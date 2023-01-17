@@ -10,7 +10,7 @@ def face_detection():
     data = request.files.get('image')
     data.save("data/image.jpg")
     # Load the cascade classifier
-    face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
+    face_cascade = cv2.CascadeClassifier("model/haarcascade_frontalface_alt.xml")
 
     # Read the input image
     img = cv2.imread('data/image.jpg')
@@ -29,13 +29,6 @@ def face_detection():
         value=False
         print ("False")
 
-
-    # # Draw rectangle around the faces
-    # for (x, y, w, h) in faces:
-    #     cv2.rectangle(img, (x, y), (x+w, y+h), (255, 0, 0), 2)
-
-    # Display the output
-    # cv2.imshow("Faces", img)
     cv2.waitKey()
     return jsonify(output=value)
 
