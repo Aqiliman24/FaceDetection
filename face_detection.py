@@ -4,6 +4,19 @@ import cv2
 
 app = Flask(__name__)
 
+@app.route("/landing_page", methods=["GET"])
+def landing_page():
+    return ("""<html>
+    <body>
+    <head><title>Page Title</title></head>
+
+    <h1>Welcome to Face Recognition Landing Page</h1>
+    <p>If you can see this, it means the api is working!.</p>
+
+    </body>
+    </html>""")
+    
+
 @app.route("/api/face_detection", methods=["POST"])
 def face_detection():
     
@@ -33,4 +46,4 @@ def face_detection():
     return jsonify(output=value)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host = '0.0.0.0',port=8000,debug=True)
