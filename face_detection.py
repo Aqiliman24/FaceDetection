@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-from sklearn.metrics import accuracy_score
+# from sklearn.metrics import accuracy_score
 import cv2
 
 app = Flask(__name__)
@@ -17,7 +17,7 @@ def landing_page():
     </html>""")
     
 
-@app.route("/api/face_detection", methods=["POST"])
+@app.route("/api", methods=["POST"])
 def face_detection():
     
     data = request.files.get('image')
@@ -46,4 +46,4 @@ def face_detection():
     return jsonify(output=value)
 
 if __name__ == '__main__':
-    app.run(host = '0.0.0.0',port=80,debug=True)
+    app.run(host = '0.0.0.0',port=8002,debug=True)
