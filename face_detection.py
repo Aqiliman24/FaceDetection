@@ -79,7 +79,7 @@ def face_detection():
     else:
         value=False
         print ("False")
-        connectAWS(imgpath)
+        # connectAWS(imgpath)
     
     os.remove(imgpath)
     
@@ -89,5 +89,5 @@ def face_detection():
 
 if __name__ == '__main__':
     load_dotenv()
-    test = (os.getenv('PORT_FACEDETECTION'))
-    app.run(host = '0.0.0.0',port=test,debug=True)
+    # test = (os.getenv('PORT_FACEDETECTION'))
+    app.run(host = '0.0.0.0',port=8002,debug=True)
