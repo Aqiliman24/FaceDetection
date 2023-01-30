@@ -9,35 +9,35 @@ import datetime
 
 app = Flask(__name__)
 
-def connectAWS(imgpath):
+# def connectAWS(imgpath):
 
-    AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID_FACEDETECTION')
-    AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY_FACEDETECTION')
-    AWS_BUCKET = os.getenv('AWS_BUCKET_FACEDETECTION')
-    AWS_LOCATION = os.getenv('AWS_LOCATION_FACEDETECTION')
+#     AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID_FACEDETECTION')
+#     AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY_FACEDETECTION')
+#     AWS_BUCKET = os.getenv('AWS_BUCKET_FACEDETECTION')
+#     AWS_LOCATION = os.getenv('AWS_LOCATION_FACEDETECTION')
 
-    conn = boto3.Session(AWS_ACCESS_KEY_ID,
-            AWS_SECRET_ACCESS_KEY)
+#     conn = boto3.Session(AWS_ACCESS_KEY_ID,
+#             AWS_SECRET_ACCESS_KEY)
 
 
-    # bucket = conn.get_bucket(AWS_BUCKET)
-    # conn.create_bucket(Bucket=AWS_BUCKET, CreateBucketConfiguration={
-    # 'LocationConstraint': AWS_LOCATION})
+#     # bucket = conn.get_bucket(AWS_BUCKET)
+#     # conn.create_bucket(Bucket=AWS_BUCKET, CreateBucketConfiguration={
+#     # 'LocationConstraint': AWS_LOCATION})
 
-    s3 = conn.resource('s3')
+#     s3 = conn.resource('s3')
 
-    # object = s3.Object(AWS_BUCKET, 'test')
+#     # object = s3.Object(AWS_BUCKET, 'test')
 
-    res = s3.Bucket(AWS_BUCKET).upload_file(imgpath,imgpath,ExtraArgs={ "ContentType": "image/jpeg"})
-    print(res)
-    # response = conn.upload_file(img, AWS_BUCKET)
+#     res = s3.Bucket(AWS_BUCKET).upload_file(imgpath,imgpath,ExtraArgs={ "ContentType": "image/jpeg"})
+#     print(res)
+#     # response = conn.upload_file(img, AWS_BUCKET)
 
-    # res = response.get('ResponseMetadata')
+#     # res = response.get('ResponseMetadata')
 
-    if res == ():
-        print('File Uploaded Successfully')
-    else:
-        print('File Not Uploaded')
+#     if res == ():
+#         print('File Uploaded Successfully')
+#     else:
+#         print('File Not Uploaded')
 
 
 
@@ -58,7 +58,8 @@ def landing_page():
 def face_detection():
     
     data = request.files.get('image')
-    imgpath = 'FailedImage/' + str(ULID.from_datetime(datetime.datetime.now()))+'.jpg'
+    # imgpath = 'FailedImage/' + str(ULID.from_datetime(datetime.datetime.now()))+'.jpg'
+    imgpath = 'FailedImage/' + 'images.jpg'
     data.save(imgpath)
     # Load the cascade classifier
     face_cascade = cv2.CascadeClassifier("model/haarcascade_frontalface_alt2.xml")
@@ -81,7 +82,7 @@ def face_detection():
         print ("False")
         # connectAWS(imgpath)
     
-    os.remove(imgpath)
+    # os.remove(imgpath)
     
 
     cv2.waitKey()
