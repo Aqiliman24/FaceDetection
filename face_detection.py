@@ -23,7 +23,7 @@ def face_detection():
     data = request.files.get('image')
     data.save("data/image.jpg")
     # Load the cascade classifier
-    face_cascade = cv2.CascadeClassifier("model/haarcascade_frontalface_alt.xml")
+    face_cascade = cv2.CascadeClassifier("model/haarcascade_frontalface_alt2.xml")
 
     # Read the input image
     img = cv2.imread('data/image.jpg')
@@ -33,7 +33,7 @@ def face_detection():
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
     # Detect faces
-    faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
+    faces = face_cascade.detectMultiScale(gray, scaleFactor=1.05, minNeighbors=4, minSize=(20, 20))
 
     if len(faces) > 0: 
         value=True
