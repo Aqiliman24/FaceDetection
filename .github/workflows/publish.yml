@@ -6,7 +6,7 @@ name: Publish
 on:
   # run it on push to the default repository branch
   push:
-    branches: [master]
+    branches: [staging]
   # run it during pull request
   pull_request:
 
@@ -47,7 +47,7 @@ jobs:
           context: ./
           # Note: tags has to be all lower-case
           tags: |
-            aqiliman24/facerecognition:latest
+            aqiliman24/facerecognition:staging
           # build on feature branches, push only on main branch
           push: ${{ github.ref == 'refs/heads/master' }}
 
